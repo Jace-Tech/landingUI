@@ -22,6 +22,20 @@ const Landing = () => {
         email: "",
     })
 
+    const handleClick = () => {
+        if(user.firstname && user.lastname && user.email) {
+            alert(JSON.stringify(user, null, 4))
+            setUser({
+                firstname: "",
+                lastname: "",
+                email: "",
+            })
+        }
+        else {
+            alert("Please fill the form")
+        }
+    }
+
     const FONT_SIZE = DEFAULT_FONT_SIZE * 2.45
     const styles = {
         bold: {
@@ -64,7 +78,7 @@ const Landing = () => {
         <Box minH={"100vh"} w={"full"} bgColor={DARK_PURPLE}> 
             <Header isDark />
 
-            <Container mt={10}>
+            <Container mt={10} position={"relative"} zIndex={10}>
                 <Heading textAlign={"center"} fontWeight={800} fontSize={FONT_SIZE} letterSpacing={"wide"} lineHeight={1.5} color={"white"} textTransform={"uppercase"}>Something awesome is <br /> coming soon</Heading>
                 <Text mt={4} fontSize={FONT_SIZE * .4} textAlign={"center"} color={"white"} fontWeight={"thin"}>
                     Your all-in-one affliate marketing tracking software <strong style={styles.bold}>track</strong>, <strong style={styles.bold}>automate</strong> and <br /> <strong style={styles.bold}>optimize</strong> your campaign.
@@ -92,8 +106,8 @@ const Landing = () => {
                 </Flex>
 
                 <Flex mt={5} backgroundColor={"white"} color={"black"} rounded={"full"}>
-                    <input style={styles.input} placeholder="Enter your email address" />
-                    <Button color={BLUE} title={"join our wait list"} />
+                    <input style={styles.input} value={user.email} onChange={(e) => setUser(prev => ({ ...prev, email: e.target.value }))}placeholder="Enter your email address" />
+                    <Button color={BLUE} title={"join our wait list"} handleClick={handleClick} />
                 </Flex>
             </Container>
 

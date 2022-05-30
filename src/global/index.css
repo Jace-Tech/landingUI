@@ -6,3 +6,7 @@ input::placeholder {
     opacity: 1;
     color: inherit;
 }
+
+.blurry {
+    filter: blur(8px);
+}

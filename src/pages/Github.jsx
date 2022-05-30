@@ -1,17 +1,19 @@
-import { Badge, Box, Container, Flex, Heading, HStack, Image, LinkBox, LinkOverlay, Spacer, Text, useToast } from '@chakra-ui/react'
+import { Box, Container, Flex, IconButton, Spacer, Text, useDisclosure, useMediaQuery, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { fetchRepositories } from '../api/github'
+import Filter from '../components/Filter'
+import GithubHeader from '../components/GithubHeader'
 import GithubRepoCard from '../components/GithubRepoCard'
 import GithubRepoSkeleton from '../components/GithubRepoSkeleton'
-import { DARK_PURPLE, PURPLE } from '../utils'
+import { IoOptions } from 'react-icons/io5'
 
 const Github = () => {
     const [repos, setRepos] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [perPage, setPerPage] = useState(20)
     const toast = useToast()
+    const { onToggle, isOpen } = useDisclosure()
+    const [isMobile] = useMediaQuery("(max-width: 425px)")
 
     const handleFetchRepo = async () => {
         const result = await fetchRepositories(page, perPage)
@@ -48,24 +50,21 @@ const Github = () => {
         handleFetchRepo(page, perPage)
     }, [page, perPage])
 
-    useEffect(() => console.log(repos), [repos])
     return (
-        <Box h={"100vh"} position={"relative"}>
+        <Box minH={"100vh"} position={"relative"}>
             {/* Header */}
-            <Box py={5} bgColor={PURPLE} shadow={"lg"} position={"sticky"} top={0} left={0} zIndex={100}>
-                <Container maxW={"container.xl"}>
-                    <LinkBox color={"white"}>
-                        <Link to={""}>
-                            <Heading fontSize={"3xl"} fontWeight={600}>GitHub Trends</Heading>
-                        </Link>
-                    </LinkBox>
-                </Container>
-            </Box>
+            <GithubHeader />
             {/* Header */}
 
-            <Flex>
-                <Spacer />
-            </Flex>
+
+            {/* Filter */}
+                <IconButton zIndex={100} fontSize={"lg"} bgColor={"gray.700"} _hover={{ bgColor: "gray.700" }} _active={{ bgColor: "gray.700" }} color={"white"} shadow={"lg"} position={"fixed"} bottom={isMobile ? 5 : 16} right={isMobile ? 5 : 16} onClick={onToggle}>
+                    <IoOptions />
+                </IconButton>
+
+                <Filter onToggle={onToggle} page={page} perPage={perPage} isOpen={isOpen} handleChangePage={e => setPage(e.target.value)} handleChangePerPage={e => setPerPage(e.target.value)} />
+            {/* Filter */}
+
 
             <Box mt={10}>
                 <Container maxW={"container.lg"}>

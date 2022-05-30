@@ -1,0 +1,8 @@
+input {
+    outline: none;
+}
+
+input::placeholder {
+    opacity: 1;
+    color: inherit;
+}

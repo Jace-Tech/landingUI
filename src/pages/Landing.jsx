@@ -70,6 +70,9 @@ const Landing = () => {
                 second
             }
 
+            
+            setTime(time)
+            
             if(TIME < Date.now()) {
                 const time = {
                     day: 0,
@@ -77,12 +80,10 @@ const Landing = () => {
                     minute: 0,
                     second: 0
                 }
-                setTime(time)
 
+                setTime(time)
                 clearInterval(handler)
             }
-
-            setTime(time)
         }, 1000)
     }, [])
 

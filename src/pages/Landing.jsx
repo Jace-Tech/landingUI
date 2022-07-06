@@ -56,7 +56,7 @@ const Landing = () => {
 
     useEffect(() => {
         const handler = setInterval(() => {
-            const DUE_DATE = new Date("6 June 2022")
+            const DUE_DATE = new Date("6 July 2022")
             const TIME = new Date(DUE_DATE - Date.now())
             const day = Math.floor((TIME.getTime() / 1000) / (24 * 60 * 60))
             const hour = TIME.getHours()
@@ -69,21 +69,22 @@ const Landing = () => {
                 minute,
                 second
             }
-
             
             setTime(time)
-            
-            if(TIME < Date.now()) {
+
+            if(TIME.getTime() <= Date.now()) {
                 const time = {
                     day: 0,
                     hour: 0,
                     minute: 0,
                     second: 0
                 }
-
+                
                 setTime(time)
+                
                 clearInterval(handler)
             }
+
         }, 1000)
     }, [])
 

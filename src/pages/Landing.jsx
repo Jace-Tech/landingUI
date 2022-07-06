@@ -70,6 +70,18 @@ const Landing = () => {
                 second
             }
 
+            if(TIME < Date.now()) {
+                const time = {
+                    day: 0,
+                    hour: 0,
+                    minute: 0,
+                    second: 0
+                }
+                setTime(time)
+
+                clearInterval(handler)
+            }
+
             setTime(time)
         }, 1000)
     }, [])

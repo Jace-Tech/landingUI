@@ -13,7 +13,7 @@ const GithubRepoCard = ({ stars, avatar, desc, name, link, issues, update, owner
     }
 
     return (
-        <Flex shadow={"lg"} maxW={600} my={5} rounded={"sm"} flexWrap={"wrap"} gap={5}>
+        <Flex shadow={"lg"} maxW={"80%"} my={5} rounded={"sm"} flexWrap={"wrap"} gap={5}>
             <LinkBox w={isMobile ? "100%" : 150}>
                 <LinkOverlay href={owner} w={"100%"} h={isMobile ? "100px" : 150}>
                     <Image w={"100%"} h={"100%"} objectFit={"cover"} src={avatar} />

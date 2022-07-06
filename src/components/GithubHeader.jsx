@@ -9,7 +9,7 @@ const GithubHeader = () => {
         <Box py={5} bgColor={"gray.900"} shadow={"lg"} position={"sticky"} top={0} left={0} zIndex={100}>
             <Container maxW={"container.xl"}>
                 <LinkBox color={"white"}>
-                    <Link to={""}>
+                    <Link to={"/comingsoon"}>
                         <Heading fontSize={"3xl"} fontWeight={600}>GitHub Trends</Heading>
                     </Link>
                 </LinkBox>

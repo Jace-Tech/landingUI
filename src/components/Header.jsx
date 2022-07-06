@@ -15,8 +15,8 @@ const Header = ({ isDark }) => {
 
 
     const links = [
-        { path: '/about', title: "about us" },
-        { path: '/blog', title: "blog" },
+        { path: '/', title: "about us" },
+        { path: '/github', title: "blog" },
     ]
 
     return (
